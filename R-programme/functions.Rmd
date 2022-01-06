@@ -1,0 +1,366 @@
+---
+title: "Function"
+output: html_notebook
+---
+# R - Functions :
+
+A function is a set of statements organized together to perform a specific task. R has a large number of in-built functions and the user can create their own functions.
+
+
+In R, a function is an object so the R interpreter is able to pass control to the function, along with arguments that may be necessary for the function to accomplish the actions.
+
+
+The function in turn performs its task and returns control to the interpreter as well as any result which may be stored in other objects.
+
+Syntax :
+
+function_name <- function(arg_1, arg_2, ...) {
+
+   Function body 
+}
+
+**Function Name** − This is the actual name of the function. It is stored in the R environment as an object with this name.
+
+**Arguments **− An argument is a placeholder. When a function is invoked, you pass a value to the argument. Arguments are optional; that is, a function may contain no arguments. Also arguments can have default values.
+
+**Function Body** − The function body contains a collection of statements that defines what the function does.
+
+**Return Value** − The return value of a function is the last expression in the function body to be evaluated.
+
+## Built-in function :
+
+R has many in-built functions which can be directly called in the program without defining them first. We can also create and use our own functions referred to as user defined functions.
+
+Simple examples of in-built functions are-
+
+seq(), mean(), max(), sum(x) and paste(...) etc. They are directly called by user written programs.
+
+Example :
+
+```{r}
+# Create a sequence of numbers from 32 to 44.
+print(seq(32,44))
+```
+
+```{r}
+
+# Find mean of numbers from 25 to 82.
+print(mean(25:82))
+```
+
+
+```{r}
+# Find sum of numbers from 41 to 68.
+print(sum(41:68))
+```
+
+## User-defined Function :
+
+We can create user-defined functions in R. They are specific to what a user wants and once created they can be used like the built-in functions. Below is an example of how a function is created and used.
+
+Example :
+
+```{r}
+# Create a function to print squares of numbers in sequence.
+new.function <- function(a) {
+   for(i in 1:a) {
+      b <- i^2
+      print(b)
+   }
+}	
+```
+
+
+## Calling a Function :
+
+```{r}
+# Create a function to print squares of numbers in sequence.
+new.function <- function(a) {
+   for(i in 1:a) {
+      b <- i^2
+      print(b)
+   }
+}
+```
+
+
+```{r}
+# Call the function new.function supplying 6 as an argument.
+new.function(6)
+```
+
+**Calling a Function without an Argument :**
+
+```{r}
+# Create a function without an argument.
+new.function <- function() {
+   for(i in 1:5) {
+      print(i^2)
+   }
+}	
+
+```
+
+```{r}
+# Call the function without supplying an argument.
+new.function()
+
+```
+
+**Calling a Function with Argument Values :**
+
+```{r}
+# Create a function with arguments.
+new.function <- function(a,b,c) {
+   result <- a * b + c
+   print(result)
+}
+```
+
+
+```{r}
+# Call the function by position of arguments.
+new.function(5,3,11)
+
+```
+
+```{r}
+# Call the function by names of the arguments.
+new.function(a = 11, b = 5, c = 3)
+
+```
+
+**Calling a Function with Default Argument** :
+
+We can define the value of the arguments in the function definition and call the function without supplying any argument to get the default result. But we can also call such functions by supplying new values of the argument and get a non default result.
+
+Example :
+
+```{r}
+# Create a function with arguments.
+new.function <- function(a = 3, b = 6) {
+   result <- a * b
+   print(result)
+}
+```
+
+
+```{r}
+# Call the function without giving any argument.
+new.function()
+```
+
+
+```{r}
+# Call the function with new values of the argument.
+new.function(9,5)
+
+```
+
+
+**Lazy Evaluation of Function**:
+
+Arguments to functions are evaluated lazily, which means they are evaluated only when needed by the function body.
+
+Example :
+
+```{r}
+# Create a function with arguments.
+new.function <- function(a, b) {
+   print(a^2)
+   print(a)
+   print(b)
+}
+```
+
+```{r}
+# Evaluate the function without supplying one of the arguments.
+new.function(6)
+```
+
+## Strings :
+
+Any value written within a pair of single quotes or double quotes in R is treated as a string. Internally R stores every string within double quotes.
+
+**Rules Applied in String Construction**
+
+- The quotes at the beginning and end of a string should be both double quotes or both single quotes. They can not be mixed.
+
+- Double quotes can be inserted into a string starting and ending with a single quote.
+- Single quote can be inserted into a string starting and ending with double quotes.
+- Double quotes can not be inserted into a string starting and ending with double quotes.
+- Single quote can not be inserted into a string starting and ending with a single quote.
+
+
+Example :
+
+```{r}
+a <- 'Start and end with single quote'
+print(a)
+```
+
+```{r}
+
+b <- "Start and end with double quotes"
+print(b)
+```
+
+```{r}
+
+c <- "single quote ' in between double quotes"
+print(c)
+```
+
+```{r}
+
+d <- 'Double quotes " in between single quote'
+print(d)
+```
+
+## String Manipulation :
+
+**Concatenating Strings** - paste() function
+
+Many strings in R are combined using the paste() function. It can take any number of arguments to be combined together.
+
+Syntax :
+
+paste(..., sep = " ", collapse = NULL)
+
+Following is the description of the parameters used :−
+
+- represents any number of arguments to be combined.
+- sep represents any separator between the arguments. It is optional.
+- collapse is used to eliminate the space in between two strings. But not the space within two words of one string.
+
+Example :
+
+```{r}
+a <- "Hello"
+b <- 'How'
+c <- "are you? "
+ print(paste(a,b,c))
+ print(paste(a,b,c, sep = "-"))
+ print(paste(a,b,c, sep = "", collapse = ""))
+```
+
+
+**Formatting numbers & strings** - format() function
+
+Numbers and strings can be formatted to a specific style using format() function.
+
+Syntax :
+
+format(x, digits, nsmall, scientific, width, justify = c("left", "right", "centre", "none")) 
+
+Following is the description of the parameters used −
+
+- x is the vector input.
+- digits is the total number of digits displayed.
+- nsmall is the minimum number of digits to the right of the decimal point.
+- scientific is set to TRUE to display scientific notation.
+- width indicates the minimum width to be displayed by padding blanks in the beginning.
+- justify is the display of the string to left, right or center.
+
+
+
+
+Example :
+
+```{r}
+# Total number of digits displayed. Last digit rounded off.
+result <- format(23.123456789, digits = 9)
+print(result)
+
+# Display numbers in scientific notation.
+result <- format(c(6, 13.14521), scientific = TRUE)
+print(result)
+
+# The minimum number of digits to the right of the decimal point.
+result <- format(23.47, nsmall = 5)
+print(result)
+
+# Format treats everything as a string.
+result <- format(6)
+print(result)
+
+# Numbers are padded with blank in the beginning for width.
+result <- format(13.7, width = 6)
+print(result)
+
+# Left justify strings.
+result <- format("Hello", width = 8, justify = "l")
+print(result)
+
+# Justify the string with center.
+result <- format("Hello", width = 8, justify = "c")
+print(result)
+```
+
+
+**Counting number of characters in a string ** - nchar() function
+
+This function counts the number of characters including spaces in a string.
+
+Syntax :
+
+nchar(x)
+
+x is the vector input.
+
+Example :
+
+```{r}
+result <- nchar("Count the number of characters")
+print(result)
+```
+
+
+**Changing the case ** - toupper() & tolower() functions
+
+These functions change the case of characters of a string.
+
+Syntax :
+
+toupper(x)
+
+tolower(x)
+
+x is the vector input.
+
+
+Example :
+```{r}
+
+# Changing to Uppercase.
+result <- toupper("Changing To Upper")
+print(result)
+
+# Changing to lowercase.
+result <- tolower("Changing To Lower")
+print(result)
+```
+
+
+**Extracting parts of a string ** - substring() function
+
+This function extracts parts of a String.
+
+Syntax :
+
+substring(x,first,last)
+
+x is the character vector input.
+
+first is the position of the first character to be extracted.
+
+last is the position of the last character to be extracted.
+
+Example :
+
+```{r}
+# Extract characters from 5th to 7th position.
+result <- substring("Extract", 5, 7)
+print(result)
+```
+

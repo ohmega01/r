@@ -1,0 +1,345 @@
+# Control Statements in R Programming
+
+## R - Decision making
+
+Decision making structures require the programmer to specify one or more conditions to be evaluated or tested by the program, along with a statement or statements to be executed if the condition is determined to be true, and optionally, other statements to be executed if the condition is determined to be false.
+
+Control statements are expressions used to control the execution and flow of the program based on the conditions provided in the statements. These structures are used to make a decision after assessing the variable. In this article, we’ll discuss all the control statements with the examples.
+
+In R programming, there are 8 types of control statements as follows:
+  
+- if condition
+
+- if-else condition
+
+- for loop
+
+- nested loops
+
+- while loop
+
+- repeat and break statement
+
+- return statement
+
+- next statement
+
+## if condition
+
+An if statement consists of a Boolean expression followed by one or more statements.
+
+
+Syntax:
+  
+  if(expression){
+  
+    statements
+    
+    ....
+    
+    ....
+    
+  }
+  
+  If the Boolean expression evaluates to be true, then the block of code inside the if statement will be executed. If Boolean expression evaluates to be false, then the first set of code after the end of the if statement (after the closing curly brace) will be executed.
+  
+Example:
+```{r}
+x <- 30L
+if(is.integer(x)) {
+   print("X is an Integer")
+}
+
+```
+## Excercise : 
+
+Create program where the user can enter a number , and if the number is even print 'This number is even!' or else print 'This number is odd' and otherwise 'This is not a valid number'
+
+## if-else condition
+
+An if statement can be followed by an optional else statement which executes when the boolean expression is false.
+
+Syntax:
+  
+  if(expression){
+  
+    statements
+    
+    ....
+    
+    ....
+    
+  }
+  
+else{
+
+  statements
+  
+  ....
+  
+  ....
+  
+}
+
+If the Boolean expression evaluates to be true, then the if block of code will be executed, otherwise the else block of code will be executed.
+
+
+Example:
+
+```{r}
+x <- 5
+
+# Check value is less than or greater than 10
+if(x > 10){
+  print(paste(x, "is greater than 10"))
+}else{
+  print(paste(x, "is less than 10"))
+}
+```
+## If….else if…..else Statement :
+
+An if statement can be followed by an optional else if...else statement, which is very useful to test various conditions using single if...else if statement.
+
+
+When using if, else if, else statements there are few points to keep in mind.
+
+
+An if can have zero or one else and it must come after any else if's.
+
+
+An if can have zero to many else if's and they must come before the else.
+
+
+Once an else if succeeds, none of the remaining else if's or else’s will be tested.
+
+![if--elif--else](/Users/musubimanagement/Desktop/R-programme/if_elif_else.jpeg)
+
+Syntax :
+
+if(boolean_expression 1) {
+
+   // Executes when the boolean expression 1 is true.
+   
+} else if( boolean_expression 2) {
+
+   // Executes when the boolean expression 2 is true.
+   
+} else if( boolean_expression 3) {
+
+   // Executes when the boolean expression 3 is true.
+   
+} else {
+
+   // executes when none of the above condition is true.
+}
+
+Example :
+
+```{r}
+x <- c("what","is","truth")
+
+if("Truth" %in% x) {
+   print("Truth is found the first time")
+} else if ("truth" %in% x) {
+   print("truth is found the second time")
+} else {
+   print("No truth found")
+}
+
+```
+## Switch Statement :
+
+A switch statement allows a variable to be tested for equality against a list of values. Each value is called a case, and the variable being switched on is checked for each case.
+
+Syntax :
+
+switch(expression, case1, case2, case3....)
+
+
+The following rules apply to a switch statement −
+
+- If the value of expression is not a character string it is coerced to integer.
+
+- You can have any number of case statements within a switch. Each case is followed by the value to be compared to and a colon.
+
+- If the value of the integer is between 1 and nargs()−1 (The max number of arguments)then the corresponding element of case condition is evaluated and the result returned.
+
+- If expression evaluates to a character string then that string is matched (exactly) to the names of the elements.
+
+- If there is more than one match, the first matching element is returned.
+
+- No Default argument is available.
+
+- In the case of no match, if there is an unnamed element of ... its value is returned. (If there is more than one such argument an error is returned.)
+
+Example :
+```{r}
+x <- switch(
+   3,
+   "first",
+   "second",
+   "third",
+   "fourth"
+)
+print(x)
+```
+
+
+
+
+## for loop
+
+A For loop is a repetition control structure that allows you to efficiently write a loop that needs to execute a specific number of times.
+
+Syntax:
+  
+  for(value in vector){
+  
+    statements
+    
+    ....
+    
+    ....
+    
+  }
+  
+Example:
+```{r}
+  
+  x <- letters[4:10]
+
+for(i in x){
+  print(i)
+}
+```
+## Excercise : 
+
+Print the following pattern
+
+1 12 123 1234 12345
+
+
+## Nested loops
+
+Nested loops are similar to simple loops. Nested means loops inside loop. Moreover, nested loops are used to manipulate the matrix.
+
+Example:
+  
+```{r}
+ # Defining matrix
+  m <- matrix(2:15, 2)
+
+for (r in seq(nrow(m))) {
+  for (c in seq(ncol(m))) {
+    print(m[r, c])
+  }
+}
+```
+ 
+## while loop
+
+while loop is another kind of loop iterated until a condition is satisfied. The testing expression is checked first before executing the body of loop.
+
+Syntax:
+  
+  while(expression){
+  
+    statement
+    
+    ....
+    
+    ....
+    
+  }
+  
+Example:
+```{r}
+  x = 1
+
+# Print 1 to 5
+while(x <= 5){
+  print(x)
+  x = x + 1
+}
+```
+  
+## Excercise :
+
+Display the numbers from 4 to 100 using the while loop
+
+## Repeat loop :
+
+The Repeat loop executes the same code again and again until a stop condition is met.
+
+Example :
+
+```{r}
+v <- c("Hello","loop")
+cnt <- 2
+repeat {
+   print(v)
+   cnt <- cnt+1
+      if(cnt > 5) {  
+      break
+   }
+}
+```
+
+## Loop Control Statements :
+
+Loop control statements change execution from its normal sequence. When execution leaves a scope, all automatic objects that were created in that scope are destroyed.
+
+## Break Statement :
+
+The break statement in R programming language has the following two usages −
+
+- When the break statement is encountered inside a loop, the loop is immediately terminated and program control resumes at the next statement following the loop.
+
+- It can be used to terminate a case in the switch statement (covered in the next chapter).
+
+Syntax :
+
+Break 
+
+Example :
+
+```{r}
+v <- c("Hello","loop")
+cnt <- 2
+
+repeat {
+   print(v)
+   cnt <- cnt + 1
+	
+   if(cnt > 5) {
+      break
+   }
+}
+
+```
+
+
+## Next Statement :
+
+The next statement in the R programming language is useful when we want to skip the current iteration of a loop without terminating it. On encountering next, the R parser skips further evaluation and starts the next iteration of the loop.
+
+Syntax :
+
+next
+
+
+Example :
+
+```{r}
+v <- LETTERS[1:6]
+for ( i in v) {
+   
+   if (i == "D") {
+      next
+   }
+   print(i)
+}
+```
+
+
+

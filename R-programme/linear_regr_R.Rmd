@@ -1,0 +1,161 @@
+---
+title: "Linear Regression using R"
+output: html_notebook
+---
+```{r}
+knitr::opts_chunk$set(fig.width=12, fig.height=8) 
+```
+
+
+# Introduction
+
+R is a great free software environment for statistical analysis and graphics. 
+
+In this blog, We  will learn how to do linear regression analysis in R by analyzing correlations between the independent variables and dependent variables, estimating and fitting a model, and evaluating the results' usefulness and effectiveness.
+
+### Data Summary
+
+Dataset has information about 392 vehicles. The goal is to find a model to predict the variable-  mpg (= miles per gallon).
+
+
+Here is the data dictionary of the possible independent variables:
+
+- cylinders = Number of cylinders between 4 and 8
+
+- displacement = Engine displacement (cu. inches)
+
+- horsepower = Engine horsepower
+
+- weight = Vehicle weight (lbs.)
+
+- acceleration = Time to accelerate from 0 to 60 mph (sec.)
+
+- year = Model year (modulo 100)
+
+- origin = Origin of the car (1. American, 2. European, 3. Japanese)
+
+```{r}
+#Read the data
+auto=read.csv("Auto.csv")
+head(auto)
+```
+
+# Data Exploration
+
+Since we are not using a high-dimensional dataset, one of the normal practice is to plot either scatter plots or boxplots to help understand the possible relationship between each of the independent variables and the dependent variable mpg.
+
+```{r}
+par(mfrow=c(4,2))    
+# when you use "~" to connect the variables, Y variable goes first
+plot(mpg~cylinders) 
+plot(mpg~displacement) 
+# "origin" is a categorical variable, so we use the boxplot
+boxplot(mpg~as.factor(origin))
+# when you use "," to connect the variables, X variable goes first
+plot(horsepower,mpg)
+plot(weight,mpg)
+plot(acceleration,mpg)
+plot(year,mpg)
+```
+
+We can  concluded a curved relationship between mpg and the three variables: weight, displacement, and horsepower;
+
+there was a linear relationship between mpg and another three variables: cylinders, acceleration, and year. 
+
+For the boxplot, the medians were clearly different among the different origins, and the variation seemed relatively consistent; thus, origin would also be a good independent variable.
+
+# Model Estimating
+
+While estimating the model, we  applied the poly( ) command, which helps avoid writing out a long formula with powers of the variables with a curved relationship with mpg.
+
+```{r}
+fit=lm(formula = mpg ~ cylinders + 
+                       poly(displacement, 2) + 
+                       poly(horsepower,2) + 
+                       poly(weight, 2) + 
+                       acceleration + 
+                       year + 
+                       as.factor(origin), data = auto)
+summary(fit)
+
+```
+
+In this case, we mainly look into the p-values and the R-squared scores.
+
+### P-value: 
+
+It comes with 0 ~ 3 stars on the side, which indicates the level of statistical significance of the variable. We are looking for at least one star to keep the variable in the model.
+
+For the p-value itself, we are looking for values that are smaller than 0.05. 
+
+**Note: 2.2e-16 is the default number representing the extremely small number (infinitely close to 0).**
+
+### R-squared: 
+
+It tells you how much Y is explained by the X in your model, normally we are looking for values that are at least larger than 0.5. The R-squared score will always increase if you add more data to your model
+
+### Adjusted R-squared:
+
+It is an adjusted statistic based on the number of independent variables in the model. The Adjusted R-squared score will always be less than or equal to the R-squared score.
+
+# Exclude the variables that are not statistically significant
+
+```{r}
+fit1=lm(mpg~poly(horsepower,2)+
+            poly(weight,2)+
+            year+poly(acceleration,2)+
+            origin, data = auto)
+summary(fit1)
+```
+
+
+
+As for now, all the variables are statistically significant.
+
+Diagnostic Analysis and Transformation Test
+
+For the diagnostic analysis, we essentially looked for evidence of whether the model followed a normal distribution.
+
+## diagnostic analysis
+
+```{r}
+par(mfrow=c(2,2)) 
+plot(fit$res~fit$fitted)
+hist(fit$res)
+qqnorm(fit$res); qqline(fit$res, col = 2,lwd=2,lty=2)
+shapiro.test(fit$res)
+```
+
+
+
+## boxcox test
+
+```{r}
+library(MASS)
+boxcox(mpg~poly(horsepower,2)+
+           poly(weight,2)+
+           year+
+           poly(acceleration,2)+
+           origin, data = auto)
+
+```
+
+
+## Log Transformation
+
+```{r}
+auto$logmpg=log(auto$mpg)
+fit2=lm(logmpg~horsepower+
+               weight+
+               year+
+               poly(acceleration,2)+
+               origin, data = auto)
+summary(fit2)
+
+```
+
+
+All the variables were statistically significant.
+
+The results of the diagnostic tests of the transformed model were still not perfect, but a great improvement from the previous model presented.
+

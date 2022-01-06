@@ -1,0 +1,25 @@
+---
+title: "data interface R"
+output:
+  html_notebook: default
+  word_document: default
+---
+
+
+
+### getwd(): 
+
+This function is used to get the current working directory being used by R.
+```{r}
+getwd()
+```
+
+
+### setwd(): 
+
+```{r}
+setwd("/Users/musubimanagement/Desktop/R-programme")
+```
+
+This function in R is used to change the path of current working directory and the path of the directory is passed as argument in the function.
+

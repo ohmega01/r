@@ -1,0 +1,169 @@
+# Control Statements in R Programming
+
+Control statements are expressions used to control the execution and flow of the program based on the conditions provided in the statements. These structures are used to make a decision after assessing the variable. In this article, we’ll discuss all the control statements with the examples.
+
+In R programming, there are 8 types of control statements as follows:
+  
+if condition
+
+if-else condition
+
+for loop
+
+nested loops
+
+while loop
+
+repeat and break statement
+
+return statement
+
+next statement
+
+## if condition
+
+This control structure checks the expression provided in parenthesis is true or not. If true, the execution of the statements in braces {} continues. 
+
+Syntax:
+  
+  if(expression){
+  
+    statements
+    
+    ....
+    
+    ....
+    
+  }
+  
+Example:
+```{r}
+  x <- 100
+
+if(x > 10){
+  print(paste(x, "is greater than 10"))
+}
+```
+## Excercise : 
+
+Create program where the user can enter a number , and if the number is even print 'This number is even!' or else print 'This number is odd' and otherwise 'This is not a valid number'
+
+## if-else condition
+
+It is similar to if condition but when the test expression in if condition fails, then statements in else condition are executed.
+
+Syntax:
+  
+  if(expression){
+  
+    statements
+    
+    ....
+    
+    ....
+    
+  }
+  
+else{
+
+  statements
+  
+  ....
+  
+  ....
+  
+}
+
+Example:
+
+```{r}
+x <- 5
+
+# Check value is less than or greater than 10
+if(x > 10){
+  print(paste(x, "is greater than 10"))
+}else{
+  print(paste(x, "is less than 10"))
+}
+```
+
+## for loop
+
+It is a type of loop or sequence of statements executed repeatedly until exit condition is reached.
+
+Syntax:
+  
+  for(value in vector){
+  
+    statements
+    
+    ....
+    
+    ....
+    
+  }
+  
+Example:
+```{r}
+  
+  x <- letters[4:10]
+
+for(i in x){
+  print(i)
+}
+```
+## Excercise : 
+
+Print the following pattern
+
+1 12 123 1234 12345
+
+
+## Nested loops
+
+Nested loops are similar to simple loops. Nested means loops inside loop. Moreover, nested loops are used to manipulate the matrix.
+
+Example:
+  
+```{r}
+ # Defining matrix
+  m <- matrix(2:15, 2)
+
+for (r in seq(nrow(m))) {
+  for (c in seq(ncol(m))) {
+    print(m[r, c])
+  }
+}
+```
+ 
+## while loop
+
+while loop is another kind of loop iterated until a condition is satisfied. The testing expression is checked first before executing the body of loop.
+
+Syntax:
+  
+  while(expression){
+  
+    statement
+    
+    ....
+    
+    ....
+    
+  }
+  
+Example:
+```{r}
+  x = 1
+
+# Print 1 to 5
+while(x <= 5){
+  print(x)
+  x = x + 1
+}
+```
+  
+## Excercise :
+
+Display the numbers from 4 to 100 using the while loop
+

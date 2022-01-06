@@ -1,0 +1,201 @@
+---
+title: "R Statistics"
+output: html_notebook
+---
+
+# Mean, Median and Mode in R Programming
+
+The measure of central tendency in R Language represents the whole set of data by a single value. It gives us the location of central points. There are three main measures of central tendency: 
+
+- Mean
+- Median
+- Mode
+
+
+## Prerequisite: 
+
+Before doing any computation, first of all, we need to prepare our data, save our data in external .txt or .csv files and it’s a best practice to save the file in the current directory. After that import, your data into R as follow: 
+
+Get the CSV file here.  
+
+
+
+
+
+```{r}
+# R program to import data into R
+# Import the data using read.csv()
+myData = read.csv("Auto.csv",
+                  stringsAsFactors=F)
+```
+
+# Print the first 6 rows
+```{r}
+print(head(myData))
+```
+
+## Mean in R Programming Language
+
+It is the sum of observations divided by the total number of observations. It is also defined as average which is the sum divided by count.
+
+
+**Example:**
+
+
+```{r}
+ 
+# Compute the mean value
+mean = mean(myData$weight)
+print(mean)
+```
+
+## Median in R Programming Language
+
+It is the middle value of the data set. It splits the data into two halves. If the number of elements in the data set is odd then the center element is median and if it is even then the median would be the average of two central elements.
+
+
+
+Syntax:
+
+median(x, na.rm = False)
+
+Where, X is a vector and na.rm is used to remove missing value
+
+Example: 
+
+```{r}
+# R program to illustrate
+# Descriptive Analysis
+# Compute the median value
+median = median(myData$weight)
+print(median)
+```
+
+
+## Mode in R Programming Language
+
+It is the value that has the highest frequency in the given data set. The data set may have no mode if the frequency of all data points is the same. Also, we can have more than one mode if we encounter two or more data points having the same frequency. There is no inbuilt function for finding mode in R, so we can create our own function for finding the mode or we can use the package called moodest.
+
+## Creating user-defined function for finding Mode
+
+There is no in-built function for finding mode in R. So let’s create a user-defined function that will return the mode of the data passed. We will be using the table() method for this as it creates a categorical representation of data with the variable names and the frequency in the form of a table. We will sort the column Age column in descending order and will return the 1 value from the sorted values.
+
+
+
+
+Example: Finding mode by sorting the column of the dataframe
+
+```{r}
+mode = function(){
+    return(sort(-table(myData$weight))[1])
+}
+ 
+mode()
+```
+
+## Using Modeest Package
+
+We can use the modeest package of the R. This package provides methods to find the mode of the univariate data and the mode of the usual probability distribution.
+
+Example: 
+
+```{r}
+
+library(modeest)
+ 
+# Compute the mode value
+mode = mfv(myData$weight)
+print(mode)
+```
+
+# Variance in R Programming Language
+
+Variance is the sum of squares of differences between all numbers and means. The mathematical formula for variance is as follows,
+
+Formula: \sigma^{2}= \frac { \sum_{i=1}^{N} (x_{i}-\mu)^{2}}{N}    
+
+where,
+
+\mu \, is\, Mean,    
+
+N is the total number of elements or frequency of distribution. 
+
+Example:
+
+Let’s consider the same dataset that we have taken in average. First, calculate the deviations of each data point from the mean, and square the result of each,
+
+\begin{array}{lll} (2-5)^2 = (-3)^2 = 9 && (5-5)^2 = 0^2 = 0 \\ (4-5)^2 = (-1)^2 = 1 && (5-5)^2 = 0^2 = 0 \\ (4-5)^2 = (-1)^2 = 1 && (7-5)^2 = 2^2 = 4 \\ (4-5)^2 = (-1)^2 = 1 && (9-5)^2 = 4^2 = 16. \\ \end{array}      [Tex]variance = \frac{9 + 1 + 1 + 1 + 0 + 0 + 4 + 16}{8} = 4[/Tex]
+
+## Computing Variance
+
+One can calculate the variance by using var() function in R.
+
+Syntax: var(x)
+
+Parameters:
+
+x: numeric vector
+
+Example 1:
+
+```{r}
+
+# R program to get variance of a list
+ 
+# Taking a list of elements
+list = c(2, 4, 4, 4, 5, 5, 7, 9)
+ 
+# Calculating variance using var()
+print(var(list))
+```
+
+
+Example 2:
+
+```{r}
+# R program to get variance of a list
+ 
+# Taking a list of elements
+list = c(212, 231, 234, 564, 235)
+ 
+# Calculating variance using var()
+print(var(list))
+```
+
+
+## Standard Deviation
+
+Standard Deviation is the square root of variance. It is a measure of the extent to which data varies from the mean. The mathematical formula for calculating standard deviation is as follows,  
+Standard Deviation = \sqrt{ variance }    
+
+Example:
+
+Standard Deviation for the above data,
+
+## Computing Standard Deviation 
+
+One can calculate the standard deviation by using sd() function in R.
+
+Syntax: sd(x)
+
+
+
+
+Parameters:
+
+x: numeric vector
+
+Example 1:
+
+```{r}
+# R program to get
+# standard deviation of a list
+ 
+# Taking a list of elements
+list = c(2, 4, 4, 4, 5, 5, 7, 9)
+ 
+# Calculating standard
+# deviation using sd()
+print(sd(list))
+```
+

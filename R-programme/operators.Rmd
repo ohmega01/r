@@ -1,0 +1,255 @@
+---
+title: "Operators in R"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+- Arithmetic Operators
+
+- Relational Operators
+
+- Logical Operators
+
+- Assignment Operators
+
+
+# Arithmetic/Numeric operators
+
+used with numeric data types to perform mathematical operations
+
+- +: addition
+
+- -: subtraction
+
+- *: multiplication
+
+- /: division
+
+- Modulo Operator (%%):
+
+- ^: raising to power
+
+## Addition 
+```{r}
+# set values of x, y and z for numeric operators exploration
+x <- 5   # integer value
+y <- 2.0 # float value
+z <- -13 # negative integer
+
+#(run this cell to initialize values for the next few cells!)
+```
+
+```{r}
+# sum of x and y
+print(x + y)
+```
+```{r}
+# Adding two vectors
+p<- c(5,6)
+q<- c(7,8)
+print(p+q)
+```
+## Subtraction Operator (-): 
+```{r}
+# difference of x and y
+print(x - y)
+```
+
+```{r}
+# Subtraction of two vectors
+p<- c(5,6)
+q<- c(7,8)
+print(p-q)
+print(q-p)
+
+
+```
+## Multiplication
+
+```{r}
+# product of x and y
+print(x * y)
+```
+
+```{r}
+# vector multiplication
+print(p*q)
+```
+## Division
+```{r}
+# quotient of x and y
+print(x / y)
+```
+
+## Power Operator (^)
+```{r}
+# x raised to power y
+print(x ^ y)
+```
+## Modulo Operator (%%):
+```{r}
+print(x %% y)
+```
+
+
+## Excercise 
+
+Create a variable with the value of pi as 3.14, create a new variable as radius and assign it a float value, this will be the radius of a circle and then output the area of the circle using the formula pi*radius^2
+
+
+# Comparison Operators
+
+used to compare two values
+
+- (<): less than
+
+- (>): greater than
+
+- (<=): less than or equal to
+
+- (>=): greater than or equal to
+
+- (==): equality
+
+- (!=): inequality
+
+
+```{r}
+# Greater Than 
+i = 3 
+j = 7
+
+print(i > j) 
+```
+
+```{r}
+# Greater Than or Equal
+i = 3 
+j = 7
+
+print(i >= j) 
+```
+
+```{r}
+# Less Than 
+i = 3 
+j = 7
+
+print(i < j) 
+```
+
+```{r}
+# Less Than or Equal 
+i = 3 
+j = 7
+
+print(i <= j) 
+```
+
+```{r}
+# Equality Test #1
+i = 3
+j = 7
+
+print(i == j)
+```
+
+```{r}
+# Equality Test #2
+i = 3
+j = 3
+print(i == j)
+```
+```{r}
+# Inequality Test #1
+i = 3
+j = 7
+
+print(i != j)
+```
+
+
+```{r}
+# Inequality Test #2
+i = 3
+j = 3
+
+print(i != j)
+```
+
+## Excercise :
+
+In the last excercise you created a program to get the area of a circle , create a print function that checks if the area that your program created is bigger than 50 or not
+
+# Logic Operators
+
+used to combine conditional statements
+- And = &
+- Or = |
+- Not = !
+
+**Example :-**
+& :
+
+```{r}
+v <- c(3,1,TRUE,2+3i)
+t <- c(4,1,FALSE,2+3i)
+print(v&t)
+```
+
+
+**|** :
+
+```{r}
+v <- c(3,0,TRUE,2+2i)
+t <- c(4,0,FALSE,2+3i)
+print(v|t)
+ 
+```
+
+ **!** :
+ 
+```{r}
+v <- c(3,0,TRUE,2+2i)
+print(!v)
+```
+
+it produces the following output :-
+
+ 
+## Assignment Operators
+
+These operators are used to assign values to vectors.
+
+**Left Assignment : <- or = or <<- :**
+
+**Right Assignment : -> or = or ->> :**
+
+Example :
+
+**Left assignment <-, <<-, =**
+
+```{r}
+v1 <- c(3,1,TRUE,2+3i)
+v2 <<- c(3,1,TRUE,2+3i)
+v3 = c(3,1,TRUE,2+3i)
+print(v1)
+print(v2)
+print(v3)
+```
+
+ 
+**Right assignment -> , ->> , =**
+
+
+```{r}
+c(3,1,TRUE,2+3i) -> v1
+c(3,1,TRUE,2+3i) ->> v2 
+print(v1)
+print(v2)
+```
+
+
+
