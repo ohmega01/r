@@ -1,7 +1,7 @@
 
 # R – Object Oriented Programming
 
-In R programming, OOPs provide classes and objects as its key tools to reduce and manage the complexity of the program. R is a functional language that uses concepts of OOPs. We can think of a class as a sketch of a car. It contains all the details about the model_name, model_no, engine, etc. Based on these descriptions we select a car. Car is the object. Each car object has its own characteristics and features. An object is also called an instance of a class and the process of creating this object is called instantiation. In R S3 and S4 classes are the two most important classes for object-oriented programming. But before going discussing these classes let’s see a brief about classes and objects.
+In R programming, OOPs provides Classes and Objects as its key tools to reduce and manage the complexity of the program. R is a functional language that uses concepts of OOPs. We can think of a Class as a sketch of a car. It contains all the details about the model_name, model_no, engine, etc. Based on these descriptions we select a car. Car is the Object. Each car object has its own characteristics and features. An object is also called an instance of a class and the process of creating this object is called instantiation. In R S3 and S4 classes are the two most important classes for object-oriented programming. But before further discussing these Classes, let’s get a brief insight on Classes and Objects.
 
 ## Class and Object
 
